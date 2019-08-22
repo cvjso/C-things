@@ -13,8 +13,8 @@ int main(){
 	}
 
 	for (a=0;a<10;a++){
-		soma = 0;
-		for (b=10;b>-1;b--){
+		for (b=9;b>=0;b--){
+			soma = 0;
 			for(c=a;c<b;c++){
 				soma = soma+array[c];
 				if(soma>maior){
