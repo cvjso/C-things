@@ -58,19 +58,40 @@ int main(){
 	int resultadoMes = dataA.mes - dataB.mes;
 	int resultadAno = dataA.ano - dataB.ano;
 
-	if(dataA.ano > dataB.ano){
-		if (dataA.mes > dataB.mes){}
-		if (dataA.mes = dataB.mes){}		
-		if (dataA.mes < dataB.mes){}
-	}
-	if (dataA.ano = dataB.ano){}
-	if (dataA.ano < dataB.ano){
-		if (dataA.mes > dataB.mes){}
-		if (dataA.mes = dataB.mes){}		
-		if (dataA.mes < dataB.mes){}
+
+	if (dataA.dia > 30 || dataA.mes > 12 || dataA.ano<0 ||dataB.dia > 30 || dataB.mes > 12 || dataB.ano<0){
+		printf("Digite uma data válida por favor");
+
 	}
 
 
+	if (dataA.ano > dataB.ano){
+		if (dataA.mes > dataB.mes){
+			if (dataA.dia < dataB.dia){
+				resultadoDias =((dataA.mes - dataB.mes)*30+ dataA.dia )- dataB.dia;
+				resultadoMes = 0;
+				resultadAno = dataA.ano - dataB.ano;
+			}
+			else{
+				resultadoDias = dataA.dia - dataB.dia;
+				resultadoMes = dataA.mes - dataB.mes;
+				resultadAno = dataA.ano - dataB.ano;
+			}
+		}
+		if (dataA.mes == dataB.mes){
+			if (dataA.dia < dataB.dia){
+				resultadoDias =((dataA.ano - dataB.ano)*12*30+ dataA.dia )- dataB.dia;
+				resultadoMes = 0;
+				resultadAno = 0;
+			}
+			else{
+				resultadoDias = dataA.dia - dataB.dia;
+				resultadoMes = dataA.mes - dataB.mes;
+				resultadAno = dataA.ano - dataB.ano;
+			}
+		}
+
+	}
 
 
 	return 0;
