@@ -15,7 +15,7 @@ int main(){
 	char letrasA[3][15];
 	int numerosB[2];
 	char letrasB[3][15];
-	char lista[] = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"}
+	char lista[12][20] = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
 
 	printf("Digite a primeira data ");
 	for(i=0;i<5;i++){
@@ -54,9 +54,10 @@ int main(){
 		}
 	}
 
-	int resultadoDias = dataA.dia - dataB.dia;
-	int resultadoMes = dataA.mes - dataB.mes;
-	int resultadAno = dataA.ano - dataB.ano;
+	int resultadoDias;
+	int resultadoMes;
+	int resultadoAno;
+	int diasT;
 
 
 	if (dataA.dia > 30 || dataA.mes > 12 || dataA.ano<0 ||dataB.dia > 30 || dataB.mes > 12 || dataB.ano<0){
@@ -64,34 +65,27 @@ int main(){
 
 	}
 
-
-	if (dataA.ano > dataB.ano){
-		if (dataA.mes > dataB.mes){
-			if (dataA.dia < dataB.dia){
-				resultadoDias =((dataA.mes - dataB.mes)*30+ dataA.dia )- dataB.dia;
-				resultadoMes = 0;
-				resultadAno = dataA.ano - dataB.ano;
-			}
-			else{
-				resultadoDias = dataA.dia - dataB.dia;
-				resultadoMes = dataA.mes - dataB.mes;
-				resultadAno = dataA.ano - dataB.ano;
-			}
+	diasT = dataA.dia + dataA.mes*30 + dataA.ano*12*30 + dataB.dia + dataB.mes*30 + dataB.ano*12*30;
+	if (diasT > 30){
+		resultadoMes = diasT/30;
+		if (resultadoMes > 12){
+			resultadoAno = resultadoMes/12;
+			resultadoDias = diasT/365;
+			resultadoMes = resultadoMes%12;
 		}
-		if (dataA.mes == dataB.mes){
-			if (dataA.dia < dataB.dia){
-				resultadoDias =((dataA.ano - dataB.ano)*12*30+ dataA.dia )- dataB.dia;
-				resultadoMes = 0;
-				resultadAno = 0;
-			}
-			else{
-				resultadoDias = dataA.dia - dataB.dia;
-				resultadoMes = dataA.mes - dataB.mes;
-				resultadAno = dataA.ano - dataB.ano;
-			}
+		else{
+			resultadoAno = 0;
+			resultadoDias = diasT%30;
 		}
-
 	}
+	else{
+		resultadoDias = diasT;
+		resultadoMes = 0;
+		resultadoAno = 0;
+	}
+
+	printf("A diferença entre as datas é: \n");
+	printf("%d dias, %d meses, %d anos ",resultadoDias,resultadoMes,resultadoAno);
 
 
 	return 0;
